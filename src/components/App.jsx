@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Wrapper } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -6,17 +7,28 @@ export class App extends Component {
     name: '',
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+  };
+
   render() {
     return (
-      <>
-        <h2>Phonebook</h2>
-        <div>
-          <input type="text" name="name" required />
+      <form onSubmit={this.handleSubmit}>
+        <h1>Phonebook</h1>
+        <Wrapper>
+          <label>
+            <p>Name</p>
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            <p>Number</p>
+            <input type="text" name="name" required />
+          </label>
           <button>Add contact</button>
-        </div>
+        </Wrapper>
         <h2>Contacts</h2>
         <ul></ul>
-      </>
+      </form>
     );
   }
 }

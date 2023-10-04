@@ -29,6 +29,16 @@ export const StyledFormContainer = styled.div`
       background-color: lightyellow;
     }
   }
+
+  .ContactButton {
+    display: flex;
+    margin-bottom: 1em;
+
+    &:hover,
+    &:focus {
+      background-color: lightblue;
+    }
+  }
 `;
 
 export const StyledWrapperContacts = styled.div`

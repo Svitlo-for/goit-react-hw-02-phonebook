@@ -13,7 +13,7 @@ export const StyledFormContainer = styled.div`
   .wrapperPhonebook {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 1px solid grey;
     margin: 0 auto;
     padding: 1em 1em;
     width: 320px;
@@ -42,6 +42,9 @@ export const StyledFormContainer = styled.div`
 `;
 
 export const StyledWrapperContacts = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
   margin: 0 auto;
   padding: 1em 1em;
   width: 320px;

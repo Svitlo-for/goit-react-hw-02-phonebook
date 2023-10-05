@@ -18,23 +18,32 @@ export class App extends Component {
     filter: '',
   };
 
-  handleSubmit = contactData => {
-    contactData.id = nanoid();
-    this.setState(prevState => {
-      return {
-        contacts: [{ ...contactData }, ...prevState.contacts],
-      };
-    });
-  };
+  // handleSubmit = contactData => {
+  //   contactData.id = nanoid();
+  //   this.setState(prevState => {
+  //     return {
+  //       contacts: [{ ...contactData }, ...prevState.contacts],
+  //     };
+  //   });
+  // };
 
-  handleAddContacts = contactData => {
+  handleAddContacts = (name, number) => {
     const hasContactDuplicate = this.state.contacts.some(
-      contact => contact.name === contactData.name
+      contact => contact.name === name
     );
     if (hasContactDuplicate) {
-      alert(`Oops! Contact with name ${contactData.name} already exists`);
+      alert(`Oops! Contact with name ${name} already exists`);
       return;
     }
+
+    const addContact = {
+      id: nanoid(),
+      name: name,
+      number: number,
+    };
+    this.setState(prevState => ({
+      contacts: [{ ...addContact }, ...prevState.contacts],
+    }));
   };
 
   onDelete = id => {
@@ -43,6 +52,7 @@ export class App extends Component {
   };
 
   handleInputChange = event => {
+    console.log('event', event);
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -58,7 +68,7 @@ export class App extends Component {
         <h1 className="title">Phonebook</h1>
         <ContactForm
           handleAddContacts={this.handleAddContacts}
-          onSubmit={this.handleSubmit}
+          // onSubmit={this.handleSubmit}
         />
         <StyledWrapperContacts>
           <h2 className="title">Contacts</h2>

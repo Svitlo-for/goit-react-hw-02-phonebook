@@ -27,32 +27,31 @@ export class App extends Component {
   //   });
   // };
 
-  handleAddContacts = (name, number) => {
+  handleAddContacts = contact => {
     const hasContactDuplicate = this.state.contacts.some(
-      contact => contact.name === name
+      ({ name }) => contact.name.toLowerCase() === name.toLowerCase()
     );
     if (hasContactDuplicate) {
-      alert(`Oops! Contact with name ${name} already exists`);
+      alert(`Oops! Contact with name ${contact} already exists`);
       return;
     }
 
     const addContact = {
+      ...contact,
       id: nanoid(),
-      name: name,
-      number: number,
     };
     this.setState(prevState => ({
-      contacts: [{ ...addContact }, ...prevState.contacts],
+      contacts: [addContact, ...prevState.contacts],
     }));
   };
 
   onDelete = id => {
-    const data = this.state.contacts.filter(contact => contact.id !== id);
-    this.setState({ contacts: [...data] });
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
   };
 
   handleInputChange = event => {
-    console.log('event', event);
     this.setState({ [event.target.name]: event.target.value });
   };
 
